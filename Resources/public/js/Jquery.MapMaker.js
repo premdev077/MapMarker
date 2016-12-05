@@ -638,8 +638,7 @@ function ClearMapForm()
 }
 
 function getLocationInfo() {
-    /*var api = 'AIzaSyARuiA5ODewzbXcHZHr8OaZvwvy3iI6LTQ';*/
-    var api = 'AIzaSyD1zw1nTmE_iYMCs-7AwCGIBVWSVMtQda4';
+    var api = 'XXXX';
     var fucntionCallback = "getMapSearch"
     var src = "https://maps.googleapis.com/maps/api/js?key="+api+"&callback="+fucntionCallback+"";
     var s = document.createElement( 'script' );
@@ -739,57 +738,3 @@ function getLocationInfo() {
 
 }(jQuery);
 
-
-/*
-function initMapXml(url) {
-    var map = new google.maps.Map(document.getElementById("map"), {
-          center: new google.maps.LatLng(-36.8503976, 174.7657216),
-          zoom: 12,
-          mapTypeId: 'roadmap',
-          styles:[{"featureType":"landscape","stylers":[{"hue":"#FFBB00"},{"saturation":43.400000000000006},{"lightness":37.599999999999994},{"gamma":1}]},{"featureType":"road.highway","stylers":[{"hue":"#FFC200"},{"saturation":-61.8},{"lightness":45.599999999999994},{"gamma":1}]},{"featureType":"road.arterial","stylers":[{"hue":"#FF0300"},{"saturation":-100},{"lightness":51.19999999999999},{"gamma":1}]},{"featureType":"road.local","stylers":[{"hue":"#FF0300"},{"saturation":-100},{"lightness":52},{"gamma":1}]},{"featureType":"water","stylers":[{"hue":"#0078FF"},{"saturation":-13.200000000000003},{"lightness":2.4000000000000057},{"gamma":1}]},{"featureType":"poi","stylers":[{"hue":"#00FF6A"},{"saturation":-1.0989010989011234},{"lightness":11.200000000000017},{"gamma":1}]}],
-    });
-    
-    var marker;
-    var infoWindow = new google.maps.InfoWindow;
-    // Change this depending on the name of your PHP file //
-    downloadUrl(url, function(data) {
-        var xml = data.responseXML;
-        var markers = xml.documentElement.getElementsByTagName("marker");
-        for (var i = 0; i < markers.length; i++) {
-            var name = markers[i].getAttribute("name");
-            var address = markers[i].getAttribute("address");
-            var type = markers[i].getAttribute("IconType");
-            var point = new google.maps.LatLng(
-                parseFloat(markers[i].getAttribute("lat")),
-                parseFloat(markers[i].getAttribute("lng")));
-            var html = MapHtml(name,address,type);
-            var icon = customIcons[type] || {};
-            marker = new google.maps.Marker({
-                map: map,
-                position: point,
-                icon: icon.icon,
-                animation: false,
-                shadow: icon.shadow,
-            });
-
-            bindInfoWindow(marker, map, infoWindow, html, icon); 
-        }
-        
-        marker.addListener('click', toggleBounce(marker));
-    });
-}
-
-function downloadUrl(url, callback) {
-    var request = window.ActiveXObject ?
-        new ActiveXObject('Microsoft.XMLHTTP') :
-        new XMLHttpRequest;
-    request.onreadystatechange = function() {
-        if (request.readyState == 4) {
-            request.onreadystatechange = doNothing;
-            callback(request, request.status);
-        }
-    };
-    request.open('GET', url, true);
-    request.send(null);
-}
-*/

@@ -20,9 +20,7 @@ class MarkerHelper {
     */
     public function getGeoCodeAction($location)
     {
-        
-        //$api = 'AIzaSyCZs6QL8R5nKO-NzEg7Y6jz8CvqNr6rIFU';
-        $api = 'AIzaSyD1zw1nTmE_iYMCs-7AwCGIBVWSVMtQda4';
+        $api = 'XXXXX';
         $address = str_replace(" ", "+", urlencode($location));
         
         $details_url = "https://maps.googleapis.com/maps/api/geocode/json?address=".$address."&key=".$api;
