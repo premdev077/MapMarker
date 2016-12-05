@@ -1,0 +1,9 @@
+maker:
+    resource: "@MarkerBundle/Controller/MarkerController.php"
+    type:     annotation
+    prefix:   markers
+    
+searchMap:
+    resource: "@MarkerBundle/Controller/searchMapController.php"
+    type:     annotation
+    prefix:   searchMap

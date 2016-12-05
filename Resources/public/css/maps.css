@@ -1,0 +1,541 @@
+html, body {
+   height: 100% !important;
+}
+
+div#map {
+    position: fixed !important;
+    width: 100%;
+    height: 400px;
+    min-height: 100% !important;
+    left: 0;
+    top: 40px;
+    background: rgba(51,51,51,0.7);
+    z-index: 10;
+    overflow: hidden;
+    background-color: rgb(229, 227, 223);
+}
+div#loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 90;
+    background: rgba(0,0,0,0.8);
+    height: 100%;
+    min-height: 100% !important;
+}
+
+div#loading img{
+    margin: 0 auto;
+    position: absolute;
+    left: 40%;
+    top: 40%;   
+    width: 200px;
+}
+
+#mapmenu{
+    position: fixed !important;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    background: rgba(51,51,51,0.7);
+    z-index: 100;
+    overflow: hidden;
+}
+
+#mapmenu ul{
+    margin: 10px 30px;
+    float: right;
+}
+
+#mapmenu ul li{
+    display: inline;
+    padding: 0;
+}
+
+#mapmenu a{
+    color:white;
+    padding: 0 10px;
+    
+}
+ 
+div#searchMap {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 140;
+    display: block;
+    float: left;
+    /* color: white; */
+    background: white;
+    padding: 10px;
+}
+
+.mapinfowindow
+{
+    position: fixed !important;
+    width: 20% !important;
+    height: 400px !important;
+    min-height: 96% !important;
+    left: 0 !important;
+    top: 40px !important;
+    background: rgba(51,51,51,0.7) !important;
+    overflow: hidden !important;
+    z-index: 330 !important;
+}
+
+#searchMap
+{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 140;
+    display: block;
+    background: #a771d8;
+    padding: 6px;
+    color: white;
+}
+#infoPanel
+{
+    position: fixed !important;
+    height: 400px !important;
+    min-height: 87% !important;
+    right: 0 !important;
+    top: 43px !important;
+    background: rgba(252,252,248,1) !important;
+    z-index: 90 !important;
+}
+
+div#info-alert-bucket {
+    width: 30%;
+    background: #fddf4e;
+    position: absolute;
+    left: 0;
+    bottom: 60px;
+    z-index: 99;
+    height: 40px;
+}
+
+.alert-bucket-close {
+    float: right;
+    color: white;
+    padding: 2px 10px;
+}
+
+div#success-alert-bucket {
+    width: 30%;
+    background: #2cca97;
+    position: absolute;
+    left: 0;
+    bottom: 60px;
+    z-index: 99;
+    height: 40px;
+}
+
+.bucketMsgRight {
+    color: white;
+    padding: 10px;
+    display: block;
+}
+
+.info-alert-bucket-close :hover, .info-alert-bucket-close :focus
+{
+    cursor: pointer;
+}
+
+.info-alert-bucket-msg {
+    text-align: center;
+    color: black;
+    padding-top: 10px;
+    font-weight: bold;
+    display: block;
+}
+
+.nextPanelInfo.disabled {
+    color: #80c5e0 !important;
+}
+
+.PropertyContainer
+{
+    position:absolute;
+    height:100%;
+}
+
+#colorList
+{
+    position: absolute !important;
+    width: 100% !important;
+    height: 30px !important;
+    min-height: 30px !important;
+    left: 0 !important;
+    top: 50px !important;
+    background: rgba(101, 101, 101,0.8) !important;
+    overflow: hidden !important;
+    z-index: 89 !important;
+}
+
+#colorList ul
+{
+    margin: 0;
+}
+
+#colorList ul li
+{
+    list-style: none;
+    padding: 5px;
+    color: white;
+    font-weight: bold;
+    font-size: 8pt;
+    text-align: center;
+    display: inline;
+}
+
+#colorList ul li img
+{
+    width: 15px;
+}
+
+.embedMapViewBtn
+{
+    color:white;
+}
+    
+.drop_down_marker
+{
+    position: absolute;
+    margin: 0 auto;
+    top: 50px !important;
+    background-image: url('../../img/btn_dwn.png');
+}
+
+#searchPanel
+{
+    position: fixed !important;
+    height: 400px !important;
+    min-height: 100% !important;
+    right: 0 !important;
+    top: 0 !important;
+    background: rgba(252,252,248,1) !important;
+    overflow: hidden !important;
+    z-index: 1030 !important;
+}
+
+.SearchTitlePandel 
+{
+    text-align: center;
+}
+
+.PropertyTitlePandel
+{
+    text-align: center;
+}
+
+#cook
+{
+    color: white;
+    padding : 10px;
+}
+        
+.Mapinfoclose{
+    position: relative;
+    top: 50%;
+}
+.mapInfoCloseBtn{
+    display: inline-block;
+    background-image: url("//www.gstatic.com/gmeviewer/images/MyMaps_Icons003.png");
+    height: 22px;
+    width: 22px;
+    background-position: -1px -191px;
+}
+
+.closeInfoPanel
+{
+    background-color: #71bbd8;
+    padding: 3px 5px !important;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.closePanelInfo 
+{
+    background-color: #636363;
+    padding: 5px 6px !important;
+    font-weight: bold;
+    color: #ffffff;
+    height: 38px;
+    width: 38px;
+    display: inline-block;
+    margin: 0 5px;
+    float: right;
+}
+.nextPanelInfo 
+{
+    background-color:#71bbd8;
+    padding: 4px 3px !important;
+    font-weight: bold;
+    color: #ffffff;
+    height: 38px;
+    width: 38px;
+    margin: 0 5px;
+    display: inline-block;
+}
+.basketPanelInfo 
+{
+    background-color: #3b6086;
+    padding: 4px 3px !important;
+    font-weight: bold;
+    color: #ffffff;
+    height: 38px;
+    width: 38px;
+    display: inline-block;
+    margin: 0;
+    float: right;
+}
+.searchInfoMainpanel{
+    padding: 15px;
+}
+
+.PropertyInfoMainpanel
+{
+    min-height: 89%;
+    overflow-y: scroll;
+    max-height: 50%;
+    padding-bottom: 20px !important;
+}
+
+.headSearchPanel
+{
+    background-color: #3ab2d6;
+    padding: 6px 5px !important;
+    font-weight: bold;
+    color: #ffffff;
+}
+.closeInfoPanelMain
+{
+    text-align: center;
+}
+.closeSearchPanel
+{
+    color: white;
+    text-align: right;
+}
+.searchTitlePanel
+{
+    font-size: 16pt;
+    text-align: center;
+}
+
+.typeInfoPanel {
+    background: #5b6167;
+    padding: 5px 5px !important;
+    color: #ffffff;
+    font-weight: bold;
+    text-align: center;
+    font-size: 1em;
+}
+
+.multi-type-choose .btn-group{
+    width: 100%;
+    display: inline-block;
+    position: relative;
+}
+
+.multi-type-choose  .btn-group > .btn:first-child {
+    width: 100%;
+    background: white;
+    text-align: left;
+}
+
+.multi-type-choose .btn .caret {
+    margin-left: 66%;
+}
+
+.multi-type-choose ul{
+    width: 100%;
+}
+
+.PropertyContainer
+{
+    color: black;
+}
+
+.no-padding
+{
+    padding: 0;
+}
+
+a.link_to_property_page {
+    float: right;
+    display: block;
+    padding: 7px 10px;
+    font-weight: bold;
+    color: #3174af;
+    font-size: 12px;
+}
+
+.Pr_Ad_info, .Pr_Ad_label, .Pr_Ad_value
+{
+    width: 100%;
+}
+
+.Pr_Ad_info
+{
+    padding: 5px 5px 5px 25px;
+}
+
+.Pr_Ad_info_2
+{
+    width: 50%;
+    padding: 5px 0 5px 27px;
+    float: left;
+}
+
+.Pr_Ad_value_2
+{
+    width: 48%;
+    padding: 5px;
+    float: left;
+}
+
+.Pr_Ad_label
+{
+    font-size: 14px;
+    color: #000000;
+    font-weight: bold;
+}
+
+.Pr_Ad_value
+{
+    font-weight: normal;
+    color: #000000;
+}
+.classification_toggle 
+{
+    padding: 1px 0;
+    background: #337ab7;
+    color: white;
+    text-align: center;
+    width: 24px;
+    position: absolute;
+    right: 0;
+    z-index: 90;
+}
+.keyword_toggle
+{
+    padding: 1px 0;
+    background: #337ab7;
+    color: white;
+    text-align: center;
+    width: 24px;
+    position: absolute;
+    right: 15px;
+    top: 24px;
+    z-index: 90;
+}
+
+.listofsearch
+{
+    color: #737373;
+    text-align: center;
+    padding: 3px;
+}
+
+a.selectBucketMap
+{
+    color: white;
+}
+
+a.searchCountinuMap
+{
+    color: white;
+}
+
+.clearSearch 
+{
+    font-size: 10pt;
+    color: white;
+    padding: 2px 10px;
+}
+
+ul#buckets {
+    height: 515px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+
+.form-group label {
+    font-weight: bold;
+}
+
+select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input
+{
+    height: 35px !important;
+}
+
+.navbar
+{
+    min-height: 40px !important;
+}
+.navbar-brand
+{
+    height: 40px !important;
+}
+.nav-tabs, .nav-pills {
+    margin-bottom: 10px;
+    border-bottom: 2px solid #337ab7;
+}
+.checkbox-inline, .radio-inline {
+    font-weight: 600 !important;
+    color: #7d7d7d !important;
+}
+.btn
+{
+    margin: 0 2px;
+}
+
+.form-group {
+    margin-bottom: 5px !important;
+}
+
+.modal {
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    z-index: 1050;
+    width: 560px;
+    margin-left: -280px;
+    background-color: #ffffff;
+    border: 1px solid #999;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    -webkit-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding-box;
+    background-clip: padding-box;
+    outline: none;
+    height: 525px;
+}
+
+.nav>li>a:focus, .nav>li>a:hover {
+    background-color: transparent;
+    color: #505050;
+}
+
+.btn
+{
+    padding: 4px 12px;
+    line-height: 20px;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+    border: 1px solid #cccccc;
+    border-bottom-color: #b3b3b3;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);
+    -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);
+}

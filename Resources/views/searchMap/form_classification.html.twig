@@ -1,0 +1,37 @@
+<div class="form-group col-md-12 col-sm-12 col-xs-12 no-padding">
+    <div class="selectContainer">
+        <select id="property_primaryClassification" name="property[primaryClassification]" required="required" class="form-control">
+            <option value="0">Select Classification</option>
+            {% for key, classfications in classfications %}
+                <option value="{{ classfications.id }}">{{classfications.description}}</option>
+            {% endfor %}
+        </select>
+    </div>
+</div>
+<div class="form-group col-md-12 col-sm-12 col-xs-12 no-padding">
+    <div class="selectContainer multi-type-choose">
+        <select id="property_primaryRegion" name="property[primaryRegion]" required="required" data-chain="#property_primaryClassification" class="form-control">
+            <option value="0">Select Region</option>
+        </select>
+    </div>
+</div>
+<div class="form-group col-md-12 col-sm-12 col-xs-12 no-padding">
+    <div class="selectContainer multi-type-choose">
+        <select id="property_primaryType" name="property[primaryType]" required="required" data-chain="#property_primaryRegion" class="form-control">
+            <option value="0">Select Type</option>
+        </select>
+    </div>
+</div>
+<div class="form-group col-md-12 col-sm-12 col-xs-12 no-padding">
+    <div class="selectContainer">
+        <select id="property_tenure" name="property[tenure]" required="required" class="form-control">
+            <option value="0">Select Tenure</option>
+            <option value="Freehold">Freehold</option>
+            <option value="Leasehold">Leasehold</option>
+            <option value="Stratum in Freehold">Stratum in Freehold</option>
+            <option value="Stratum in Leasehold">Stratum in Leasehold</option>
+            <option value="Crosslease in Freehold">Crosslease in Freehold</option>
+            <option value="Crosslease in Leasehold">Crosslease in Leasehold</option>
+        </select>
+    </div>
+</div>

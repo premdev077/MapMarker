@@ -1,0 +1,177 @@
+{% extends 'PropertyBundle:Site:base.html.twig' %}
+
+{% block onload %}
+
+
+    <style>
+       div#map {
+            position: fixed !important;
+            width: 100%;
+            height: 400px;
+            min-height: 91% !important;
+            left: 0;
+            top: 40px;
+            background: rgba(51,51,51,0.7);
+            z-index: 10;
+            overflow: hidden;
+            background-color: rgb(229, 227, 223);
+        }
+        
+        #mapmenu{
+            position: fixed !important;
+            width: 100%;
+            height: 40px;
+            left: 0;
+            bottom: 0;
+            background: rgba(51,51,51,0.7);
+            z-index: 100;
+            overflow: hidden;
+            background-color: rgb(229, 227, 223);
+        }
+        
+        #mapmenu ul li
+        {
+            display: inline;
+        }
+        
+        .mapinfowindow
+        {
+            position: fixed !important;
+            width: 20% !important;
+            height: 400px !important;
+            min-height: 96% !important;
+            left: 0 !important;
+            top: 40px !important;
+            background: rgba(51,51,51,0.7) !important;
+            overflow: hidden !important;
+            z-index: 330 !important;
+        }
+    </style>
+{% endblock onload%} 
+
+
+{% block home %}
+    <div id="map"></div>
+    
+    <div id="mapmenu">
+        <ul>
+            <li>
+                <a href='{{ path('marker_listing') }}'>Listing </a>
+            </li>
+            <li>
+                <a href='{{ path('marker_lease') }}'>Rents </a>
+            </li>
+            <li>
+                <a href='{{ path('marker_index') }}'>Property </a>
+            </li>
+            <li>
+                <a href='{{ path('marker_sale') }}'>Sale </a>
+            </li>
+        </ul>
+    </div>
+{% endblock home %}
+
+
+{% block body %}
+{% endblock body %}
+
+
+
+{% block js %}
+    <script type="text/javascript">
+        //<![CDATA[
+        var customIcons = {
+                rents: {
+                    icon: '/img/pin_rent.png',
+                    shadow: 'http://labs.google.com/ridefinder/images/mm_20_shadow.png'
+                },
+                sales: {
+                    icon: '/img/pin_urgent.png',
+                    shadow: 'http://labs.google.com/ridefinder/images/mm_20_shadow.png'
+                },
+                listing: {
+                    icon: '/img/pin_list.png',
+                    shadow: 'http://labs.google.com/ridefinder/images/mm_20_shadow.png'
+                },
+                property: {
+                    icon: '/img/pin_property.png',
+                    shadow: 'http://labs.google.com/ridefinder/images/mm_20_shadow.png'
+                },
+                Retail: {
+                    icon: '/img/pin_sale.png',
+                    shadow: 'http://labs.google.com/ridefinder/images/mm_20_shadow.png'
+                },
+                Industrial: {
+                    icon: '/img/pin_success.png',
+                    shadow: 'http://labs.google.com/ridefinder/images/mm_20_shadow.png'
+                },
+                Office: {
+                    icon: '/img/pin_office.png',
+                    shadow: 'http://labs.google.com/ridefinder/images/mm_20_shadow.png'
+                },
+                waiting: {
+                    icon: '/img/pin_waiting.png',
+                    shadow: 'http://labs.google.com/ridefinder/images/mm_20_shadow.png'
+                },
+                done: {
+                    icon: '/img/pin_success.png',
+                    shadow: 'http://labs.google.com/ridefinder/images/mm_20_shadow.png'
+                },
+                urgent: {
+                    icon: '/img/pin_urgent.png',
+                    shadow: 'http://labs.google.com/ridefinder/images/mm_20_shadow.png'
+                },
+                delete: {
+                    icon: '/img/pin_urgent.png',
+                    shadow: 'http://labs.google.com/ridefinder/images/mm_20_shadow.png'
+                },
+        };
+        function initMap() {
+            
+            var map = new google.maps.Map(document.getElementById("map"), {
+                  center: new google.maps.LatLng(-36.8573976, 174.7727216),
+                  zoom: 14,
+                  mapTypeId: 'roadmap',
+                  styles:[{"featureType":"landscape","stylers":[{"hue":"#FFBB00"},{"saturation":43.400000000000006},{"lightness":37.599999999999994},{"gamma":1}]},{"featureType":"road.highway","stylers":[{"hue":"#FFC200"},{"saturation":-61.8},{"lightness":45.599999999999994},{"gamma":1}]},{"featureType":"road.arterial","stylers":[{"hue":"#FF0300"},{"saturation":-100},{"lightness":51.19999999999999},{"gamma":1}]},{"featureType":"road.local","stylers":[{"hue":"#FF0300"},{"saturation":-100},{"lightness":52},{"gamma":1}]},{"featureType":"water","stylers":[{"hue":"#0078FF"},{"saturation":-13.200000000000003},{"lightness":2.4000000000000057},{"gamma":1}]},{"featureType":"poi","stylers":[{"hue":"#00FF6A"},{"saturation":-1.0989010989011234},{"lightness":11.200000000000017},{"gamma":1}]}],
+            });
+            
+            var infoWindow = new google.maps.InfoWindow;
+            
+            $.ajax({
+                type: "GET",
+                url: "/markers/ajax/test/data",
+                success: function(data) {
+                    var json = JSON.parse(data);
+                    $.each(json, function(i, item) {
+                          var name = item.name;
+                          var address = item.address;
+                          var type = item.type;
+                          var point = new google.maps.LatLng(
+                              parseFloat(item.lat),
+                              parseFloat(item.lng));
+                          var html = "<div id='cook'><b>" + name + "</b> <br/>" + address  + "</div>";
+                          var icon = customIcons[type] || {};
+                          var marker = new google.maps.Marker({
+                              map: map,
+                              position: point,
+                              icon: icon.icon,
+                              shadow: icon.shadow
+                          });
+                          bindInfoWindow(marker, map, infoWindow, html);
+                    })
+                }
+            });
+            
+        }
+        function bindInfoWindow(marker, map, infoWindow, html) {
+            google.maps.event.addListener(marker, 'click', function() {
+                infoWindow.setContent(html);
+                infoWindow.open(map, marker);
+            });
+            
+        }
+        //]]>
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARuiA5ODewzbXcHZHr8OaZvwvy3iI6LTQ&callback=initMap&sensor=false"  async defer></script>
+
+{% endblock js %}

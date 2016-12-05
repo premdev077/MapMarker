@@ -1,0 +1,233 @@
+{% extends 'PropertyBundle:Site:base.html.twig' %}
+
+{% block title %}Map Search{% endblock title %}
+
+{% block onload %}
+    
+    <link rel="stylesheet" media="screen" type="text/css" href="/assets/css/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" media="screen" type="text/css" href="/assets/css/bootstrap/css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" media="screen" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css" />
+
+    <!--
+         <link rel="stylesheet" type="text/css" media="screen" href="/assets/run/maps.css" />
+     -->
+    {% stylesheets '@MarkerBundle/Resources/public/css/maps.css' filter='cssrewrite' %}
+        <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
+    {% endstylesheets %}
+     <script type="text/javascript">
+        $(document).ready(function () {
+            
+             $(".dates").livequery(function () {
+                $(this).datepicker({
+                        format: "dd-mm-yyyy",
+                        autoclose: true,
+                        todayHighlight: true,
+                        constrainInput: false
+                    });
+            });
+           
+        }); 
+    </script>
+{% endblock onload%} 
+
+{% block home %}
+    <div id="success-alert-bucket" class="hide">
+        <a class="alert-bucket-close">
+            <i class="fa fa-1x fa-close"></i>
+        </a>
+        <span class="bucketMsgRight"> </span>
+    </div>
+    <div id="info-alert-bucket" class="hide">
+        <a class="alert-bucket-close">
+            <i class="fa fa-1x fa-close"></i>
+        </a>
+        <span class="info-alert-bucket-msg"> </span>
+    </div>
+    <div id="loading" class='hide'><img src='/assets/img/loding.gif'></div>
+    <div id="map"></div>
+    <!--
+        < a class = "drop_down_marker" > < /a> < div id = "colorList" >< ul >< li >< img src = "/img/pin_rent.png" / >< span > Rent < /span> < /li> < li >< img src = "/img/pin_urgent.png" / >< span > Sale < /span> < /li> < li >< img src = "/img/pin_sale.png" / >< span > Retail < /span> < /li> < li >< img src = "/img/pin_success.png" / >< span > Industrial < /span> < /li> < li >< img src = "/img/pin_office.png" / >< span > Office < /span> < /li> < /ul> < /div>
+    -->
+    <div class="embedMapView col-md-12 col-sm-12 col-xs-12 no-padding"></div>
+    <div id="infoPanel" class="col-md-3 col-sm-3 col-xs-11 hide no-padding">
+       <!-- using for map search data visible panale.. More Html Written in Js file['Map.Js -> Function MapHtml()']-->
+    </div>
+    <a id="searchMap" href='#'>
+        <i class="fa fa-2x fa-search-plus"></i> 
+    </a> 
+    <div id="searchPanel" class="col-md-3 col-sm-3 col-xs-11 no-padding">
+        <div class="searchContainer col-md-12 col-sm-12 col-xs-12 no-padding">
+            
+            <div class="headSearchPanel col-md-12 col-sm-12 col-xs-12  no-padding">
+                <!--
+                    <a class="listofsearch col-md-2 col-sm-2 col-xs-2 no-padding pull-left" href="javascript:void(0)">
+                        <i class="fa fa-2x fa-bookmark"></i>
+                    </a>
+                -->
+                <a class="clearSearch padding-left-5 pull-left " href="javascript:void(0)">
+                    <i class="fa fa-2x fa-refresh"></i>
+                </a>
+                <a class="BucketMapOpen padding-left-5  pull-left show">
+                    <i class="fa fa-2x fa-shopping-basket"></i>
+                </a>
+                <a class="searchCountinuMap padding-left-5 pull-left hide" href="javascript:void(0)">
+                    <i class="fa fa-2x fa-search-plus"></i>
+                </a>
+                <div class="searchTitlePanel col-md-8 col-sm-8 col-xs-8 no-padding">Find Property</div>  
+                <a class="closeSearchPanel padding-left-5 pull-right">
+                    <i class="fa fa-2x fa-close"></i>
+                </a>
+            </div>
+            
+            <div id="BucketListPanel" class="col-sm-12 col-md-12 hide">
+                <div id="selectedBucketInfo" class="col-sm-12 col-md-12 hide well margin-top-10" data-bucket-id="0" data-type="0">
+                    <h4 class="col-sm-12 col-md-12 no-padding">Selected Bucket</h4> 
+                    <div class="col-sm-12 col-md-12 no-padding margin-top-5">
+                         <span class="pull-left">
+                             Bucket Selected : 
+                         </span>  
+                         <strong>
+                             <div id="selectedBucketName" class="pull-left"></div>
+                         </strong>
+                    </div>
+                    <div class="col-sm-12 col-md-12 no-padding margin-top-5 margin-bottom-5">
+                        <span class="pull-left">
+                            Bucket Type : 
+                        </span>  
+                        <strong>
+                            <div id="selectedBucketType"class="pull-left"></div>
+                        </strong>
+                    </div>
+                    <br/>
+                </div>
+                <h4 class="col-sm-8 col-md-8">Office Buckets</h4> 
+                <a href="#modal_new_bucket" data-toggle="modal" role="button" class=" col-sm-3 col-md-3 pull-right margin-top-10 no-padding">
+                    <i class="icon-plus"></i> Add
+                </a>
+                <ul class="nav nav-list col-sm-12 col-md-12" id="buckets">
+                    {% for bucket in buckets.get %}
+                        <li class="no-padding margin-top-5 col-md-12 col-sm-12">
+                            <div class="swatch" style="background-color:{{ bucket.color }};"></div>
+                            <a class="bucket no-padding padding-left-5 col-md-6 col-sm-6" data-bucket-id="{{ bucket.id }}">{{ bucket.name }}</a>
+                            <a class="selectBucketOption no-padding btn btn-info col-md-3 col-sm-3 pull-right no-margin" data-bucket-id="{{ bucket.id }}" data-bucket-name="{{ bucket.name }}">select</a>
+                            <a class="fintBucketlist no-padding btn btn-primary pull-right  col-md-2 col-sm-2 no-margin margin-right-5" data-bucket-id="{{ bucket.id }}" onclick="showBucketProperty({{ bucket.id }})"><i class="fa fa-eye"></i></a>
+                        </li>
+                    {% endfor %}
+                </ul> <br />
+            </div>
+                
+            <div class="searchInfoMainpanel col-md-12 col-sm-12 col-xs-12 show">
+                <fieldset>
+                <!-- Form Name -->
+                    {% include("MarkerBundle:searchMap:form_keywords.html.twig") %}
+                    <label class="padding-top-5">Find Vera Property Details</label>
+                    <div class="evi_classification show">
+                        {% include("MarkerBundle:searchMap:form_classification.html.twig") %}
+                    </div>
+                    <div id="exTab1" class="col-md-12 col-sm-12 col-xs-12 no-padding">	
+                        <ul  class="nav nav-pills">
+                            <li class="active">
+                                <a  href="#1evi" data-toggle="tab">Evidence</a>
+                            </li>
+                            <li>
+                                <a href="#2oppo" data-toggle="tab">Opportunity</a>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content clearfix col-md-12 col-sm-12 col-xs-12 no-padding">
+                            <div class="tab-pane active" id="1evi">
+                                <div class="evi_searchtype">
+                                    {% include("MarkerBundle:searchMap:form_property_type.html.twig") %}
+                                </div>
+                                <div class="property_search_type">
+                                    <div class="evi_rent hide">
+                                        {% include("MarkerBundle:searchMap:form_rents.html.twig") %}
+                                    </div>
+                                    <div class="evi_sale hide">
+                                        {% include("MarkerBundle:searchMap:form_sales.html.twig") %}
+                                    </div>
+                                    <div class="evi_list hide">
+                                        {% include("MarkerBundle:searchMap:form_listings.html.twig") %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="2oppo">
+                                <div class="evi_date">
+                                    {% include("MarkerBundle:searchMap:form_opportunity_dates.html.twig") %}
+                                </div>
+                                <div class="form-group col-md-12 col-sm-12 col-xs-12 no-padding">
+                                    <label for="checkboxes-0">
+                                      <input type="checkbox" name="property[exits]" id="checkboxes-0" value="1">
+                                      Existing Client
+                                    </label>
+                                </div>
+                                <div class="evi_searchtype">
+                                    {% include("MarkerBundle:searchMap:form_opportunity_type.html.twig") %}
+                                </div>
+                                <div class="property_search_type">
+                                    <div class="evi_rent hide">
+                                        {% include("MarkerBundle:searchMap:form_opportunity_rents.html.twig") %}
+                                    </div>
+                                    <div class="evi_sale hide">
+                                        {% include("MarkerBundle:searchMap:form_opportunity_listings.html.twig") %}
+                                    </div>
+                                    <div class="evi_list hide">
+                                        {% include("MarkerBundle:searchMap:form_opportunity_custom.html.twig") %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+                                    
+        </div>
+    </div>         
+{% endblock home %}
+
+
+{% block body %}
+ 
+    <!-- New Bucket Modal -->
+    <div id="modal_new_bucket" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icon-minus-sign"></i>
+            </button>
+            <h3 id="bucket_new">Add New Bucket</h3>
+        </div>
+        <div class="modal-body">
+            <p>
+                <input type="text" placeholder="Enter a name for the bucket..." class="input-xlarge" id="new_bucket_name" maxlength="15">
+                <input type="hidden" id="new_bucket_type" value="Listing">
+            </p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+            <button class="btn btn-primary" id="save_map_bucket">Save changes</button>
+        </div>
+    </div> 
+{% endblock body %}
+
+{% block js %}
+    <script type="text/javascript">
+        var JSON_URLS = {
+            base_path: '{{ path('marker_sale') }}',
+        };
+    </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.min.js"></script>
+    
+    {% javascripts 
+        '@MarkerBundle/Resources/public/js/Jquery.Classification.js' 
+        '@MarkerBundle/Resources/public/js/Jquery.MapMaker.js'
+        '@MarkerBundle/Resources/public/js/Jquery.MapBucket.js'
+    %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    
+    <!--
+        <script src="/assets/Jquery.Classification.js"></script>
+        <script src="/assets/Jquery.MapMaker.js"></script>
+        <script src="/assets/Jquery.MapBucket.js"></script>
+    -->
+{% endblock js %}

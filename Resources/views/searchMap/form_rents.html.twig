@@ -1,0 +1,40 @@
+<div class="form-group col-md-12 col-sm-12 col-xs-12 no-padding">
+    <!-- Contract rent -->
+    <label class="col-md-12 col-sm-12 col-xs-12 no-padding control-label" for="rents">Date Range : </label>
+    <div class=" col-md-6 col-sm-6 col-xs-6 no-padding">
+        <input type="text" id="rental_search_minDate" name="rental_search[minDate]" placeholder = "dd-mm-yyyy" class="form-control input-md dates">
+    </div>     
+    <div class=" col-md-6 col-sm-6 col-xs-6 no-padding">
+        <input type="text" id="rental_search_maxDate" name="rental_search[maxDate]" placeholder = "dd-mm-yyyy" class="form-control input-md dates">
+    </div>
+
+    <!-- Contract rent -->
+    <label class="col-md-12 col-sm-12 col-xs-12 no-padding control-label" for="rents">Contract Rent: </label>
+    <div class=" col-md-6 col-sm-6 col-xs-6 no-padding">
+        <input type="number" id="rental_search_minContractRent" name="rental_search[minContractRent]" pattern="\d+(\.\d{1,2})?" class="form-control input-md">
+    </div>     
+    <div class=" col-md-6 col-sm-6 col-xs-6 no-padding">
+        <input type="number" id="rental_search_maxContractRent" name="rental_search[maxContractRent]" pattern="\d+(\.\d{1,2})?" class="form-control input-md">
+    </div>    
+    
+    <!-- Contract rent -->
+    <label class="col-md-12 col-sm-12 col-xs-12 no-padding control-label" for="rents">Quantity: </label>
+    <div class=" col-md-6 col-sm-6 col-xs-6 no-padding">
+        <input type="number" id="rental_search_minQuantity" name="rental_search[minQuantity]" pattern="\d+(\.\d{1,2})?" class="form-control input-md">
+    </div>     
+    <div class=" col-md-6 col-sm-6 col-xs-6 no-padding">
+        <input type="number" id="rental_search_maxQuantity" name="rental_search[maxQuantity]" pattern="\d+(\.\d{1,2})?" class="form-control input-md">
+    </div>   
+    
+    <!-- Contract rent -->
+    <label class="col-md-12 col-sm-12 col-xs-12 no-padding control-label" for="rents">Net Rate: </label>
+    <div class=" col-md-6 col-sm-6 col-xs-6 no-padding">
+        <input type="number" id="rental_search_minNetRate" name="rental_search[minNetRate]" pattern="\d+(\.\d{1,2})?" class="form-control input-md">
+    </div>     
+    <div class=" col-md-6 col-sm-6 col-xs-6 no-padding">
+        <input type="number" id="rental_search_maxNetRate" name="rental_search[maxNetRate]" pattern="\d+(\.\d{1,2})?" class="form-control input-md">
+    </div> 
+    
+      <!-- Button -->
+    <button id="singlebutton" name="singlebutton" class="col-md-4 col-xs-6 col-sm-4 btn btn-info pull-right" onclick="SearchByrents('{{ path('search_map_by_rent') }}')">  <i class="fa fa-search"></i> Find </button>
+</div>

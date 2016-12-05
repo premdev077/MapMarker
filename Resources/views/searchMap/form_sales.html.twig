@@ -1,0 +1,42 @@
+<div class="form-group col-md-12 col-sm-12 col-xs-12 no-padding">
+    <!-- Contract rent -->
+    <label class="col-md-12 col-sm-12 col-xs-12 no-padding control-label" for="rents">Date Range : </label>
+    <div class=" col-md-6 col-sm-6 col-xs-6 no-padding">
+        <input type="text" id="sale_search_minSaleDate" name="sale_search[minSaleDate]"  placeholder = "dd-mm-yyyy" class="form-control input-md dates">
+    </div>     
+    <div class=" col-md-6 col-sm-6 col-xs-6 no-padding">
+        <input type="text" id="sale_search_maxSaleDate" name="sale_search[maxSaleDate]" placeholder = "dd-mm-yyyy" class="form-control input-md dates">
+    </div>
+
+    <!-- Contract rent -->
+    <label class="col-md-12 col-sm-12 col-xs-12 no-padding control-label" for="rents">Sale Price : </label>
+    <div class=" col-md-6 col-sm-6 col-xs-6 no-padding">
+        <input type="text" id="sale_search_minSalePrice" name="sale_search[minSalePrice]" pattern="\d+(\.\d{1,2})?" class="form-control input-md">
+    </div>     
+    <div class=" col-md-6 col-sm-6 col-xs-6 no-padding">
+        <input type="text" id="sale_search_maxSalePrice" name="sale_search[maxSalePrice]" pattern="\d+(\.\d{1,2})?" class="form-control input-md">
+    </div>    
+    
+    <!-- Contract rent -->
+    <label class="col-md-12 col-sm-12 col-xs-12 no-padding control-label" for="rents">Lettable Area : </label>
+    <div class=" col-md-6 col-sm-6 col-xs-6 no-padding">
+        <input type="text" id="sale_search_minLettableArea" name="sale_search[minLettableArea]" pattern="\d+(\.\d{1,2})?" class="form-control input-md">
+    </div>     
+    <div class=" col-md-6 col-sm-6 col-xs-6 no-padding">
+        <input type="text" id="sale_search_maxLettableArea" name="sale_search[maxLettableArea]" pattern="\d+(\.\d{1,2})?" class="form-control input-md">
+    </div>   
+    
+    <!-- Contract rent -->
+    <label class="col-md-12 col-sm-12 col-xs-12 no-padding control-label" for="rents">WALT : </label>
+    <div class=" col-md-6 col-sm-6 col-xs-6 no-padding">
+        <input type="text" id="sale_search_minWalt" name="sale_search[minWalt]" pattern="\d+(\.\d{1,2})?" class="form-control input-md">
+    </div>     
+    <div class=" col-md-6 col-sm-6 col-xs-6 no-padding">
+        <input type="text" id="sale_search_maxWalt" name="sale_search[maxWalt]" pattern="\d+(\.\d{1,2})?" class="form-control input-md">
+    </div> 
+
+    <button id="singlebutton" name="singlebutton" class="col-md-4 col-xs-6 col-sm-4 btn btn-info pull-right" onclick="SearchBySales('{{ path('search_map_by_sale') }}')">  <i class="fa fa-search"></i> Find </button>
+    <!-- Button
+        <button id="savebutton" name="savebutton" class="col-md-4 col-xs-6 col-sm-4 btn btn-success pull-right">  <i class="fa fa-floppy-o"></i> Save </button>
+    -->
+</div>

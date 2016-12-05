@@ -1,0 +1,27 @@
+<div class="form-group col-md-12 col-sm-12 col-xs-12 no-padding">
+    <div class="form-group"> 
+        <label class="col-md-12 col-sm-12 col-xs-12 no-padding control-label" for="radio">Select Type</label>
+        <label class="col-md-12 col-sm-12 col-xs-12 no-padding" for="radios-0">
+            <input type="radio" name="opportunity_search[type]" id="search-opportunity_rent" value="Commencement Date">
+            Commencement Date
+        </label> 
+        <label class="col-md-12 col-sm-12 col-xs-12 no-padding" for="radios-1">
+            <input type="radio" name="opportunity_search[type]" id="search-opportunity_rent" value="Expiration Date">
+            Expiration Date
+        </label> 
+        <label class="col-md-12 col-sm-12 col-xs-12 no-padding" for="radios-2">
+            <input type="radio" name="opportunity_search[type]" id="search-opportunity_rent" value="Final Expiry">
+            Final Expiry
+        </label>
+        <label class="col-md-12 col-sm-12 col-xs-12 no-padding" for="radios-3">
+            <input type="radio" name="opportunity_search[type]" id="search-opportunity_rent" value="Rent Review">
+            Rent Review
+        </label>
+        <label class="col-md-12 col-sm-12 col-xs-12 no-padding" for="radios-4">
+            <input type="radio" name="opportunity_search[type]" id="search-opportunity_rent" value="Right of Renewal">
+            Right of Renewal
+        </label> 
+    </div>
+    <!-- Button -->
+    <button id="singlebutton" name="singlebutton" class="col-md-4 col-xs-6 col-sm-4 btn btn-info pull-right" onclick="SearchByOppRentals('{{ path('search_map_by_opportunity_rental') }}')">  <i class="fa fa-search"></i> Find </button>
+</div>

@@ -1,0 +1,22 @@
+<div class="form-group col-md-12 col-sm-12 col-xs-12 no-padding">
+    <!-- Listing Date -->
+    <label class="col-md-12 col-sm-12 col-xs-12 no-padding control-label" for="listings">Listing Date : </label>
+    <div class=" col-md-6 col-sm-6 col-xs-6 no-padding">
+        <input type="text" id="listing_search_minListingDate" name="listing_search[minListingDate]" placeholder = "dd-mm-yyyy" class="form-control input-md dates">
+    </div>     
+    <div class=" col-md-6 col-sm-6 col-xs-6 no-padding">
+        <input type="text" id="listing_search_maxListingDate" name="listing_search[maxListingDate]" placeholder = "dd-mm-yyyy" class="form-control input-md dates">
+    </div>
+    
+     <!-- Close Listing rent -->
+    <label class="col-md-12 col-sm-12 col-xs-12 no-padding control-label" for="listings">Expected Close Date : </label>
+    <div class=" col-md-6 col-sm-6 col-xs-6 no-padding">
+        <input type="text" id="listing_search_minCloseDate" name="listing_search[minCloseDate]" placeholder = "dd-mm-yyyy" class="form-control input-md dates">
+    </div>     
+    <div class=" col-md-6 col-sm-6 col-xs-6 no-padding">
+        <input type="text"  id="listing_search_maxCloseDate" name="listing_search[maxCloseDate]" placeholder = "dd-mm-yyyy" class="form-control input-md dates">
+    </div>
+
+    <!-- Button -->
+    <button id="singlebutton" name="singlebutton" class="col-md-4 col-xs-6 col-sm-4 btn btn-info pull-right" onclick="SearchByListings('{{ path('search_map_by_lists') }}')">  <i class="fa fa-search"></i> Find </button>
+</div>
